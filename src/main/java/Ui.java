@@ -8,8 +8,9 @@ public class Ui {
     private JFrame ramka;
     private JPanel control;
     private JButton[] test;
-    private JButton keks;
-    private JButton keks2;
+    private JButton buy;
+    private JButton sell;
+    private JButton stats;
     private JButton back;
     public Ui(){
         ramka = new JFrame("tutaj idzie tytul");
@@ -89,26 +90,40 @@ public class Ui {
         for(int i = 0; i<12; i++){
             ramka.remove(test[i]);
         }
-        keks = new JButton("zakup");
-        keks.setLocation(0,0);
-        keks2 = new JButton("sprzedaz");
-        keks2.setLocation(50,0);
+        buy = new JButton("zakup");
+        buy.setLocation(0,0);
+        sell = new JButton("sprzedaz");
+        sell.setLocation(50,0);
         back = new JButton("wstecz");
         back.setLocation(0,50);
+        stats = new JButton("podsumowanie");
+        stats.setLocation(50,50);
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ramka.remove(keks);
-                ramka.remove(keks2);
-                ramka.remove(back);
-                createUi();
-                ramka.repaint();
+                backFromBuySellMenu();
             }
         });
-        ramka.add(keks);
-        ramka.add(keks2);
+        ramka.add(buy);
+        ramka.add(sell);
         ramka.add(back);
+        ramka.add(stats);
         ramka.setVisible(true);
+        ramka.repaint();
+    }
+    private void showStats(){
+        ramka.remove(buy);
+        ramka.remove(sell);
+        ramka.remove(back);
+        ramka.remove(stats);
+        ramka.repaint();
+    }
+    private void backFromBuySellMenu(){
+        ramka.remove(buy);
+        ramka.remove(sell);
+        ramka.remove(back);
+        ramka.remove(stats);
+        createUi();
         ramka.repaint();
     }
 
