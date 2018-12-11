@@ -1,5 +1,8 @@
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +15,7 @@ public class Ui {
     private JButton sell;
     private JButton stats;
     private JButton back;
+    private JLabel wynik;
     public Ui(){
         ramka = new JFrame("tutaj idzie tytul");
         ramka.setSize(680,600);
@@ -104,6 +108,29 @@ public class Ui {
                 backFromBuySellMenu();
             }
         });
+        buy.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    showStats();
+                    Excel excel = new Excel();
+                    wynik = new JLabel("test");
+                    ramka.add(wynik);
+                    wynik.setText(excel.test());
+                    wynik.setLocation(0,0);
+                    wynik.setVisible(true);
+                    ramka.repaint();
+                }catch (IOException | InvalidFormatException e1){
+                    e1.printStackTrace();
+                }
+            }
+        });
+        stats.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showStats();
+            }
+        });
         ramka.add(buy);
         ramka.add(sell);
         ramka.add(back);
@@ -114,7 +141,6 @@ public class Ui {
     private void showStats(){
         ramka.remove(buy);
         ramka.remove(sell);
-        ramka.remove(back);
         ramka.remove(stats);
         ramka.repaint();
     }
@@ -123,6 +149,7 @@ public class Ui {
         ramka.remove(sell);
         ramka.remove(back);
         ramka.remove(stats);
+        ramka.remove(wynik);
         createUi();
         ramka.repaint();
     }

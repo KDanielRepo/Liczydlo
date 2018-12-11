@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class Excel {
     public static final String xlsxPath = "./Test.xlsx";
-    public void test()throws IOException, InvalidFormatException{
+    public String test()throws IOException, InvalidFormatException{
         Workbook workbook = WorkbookFactory.create(new File("C:/Users/NigaKolczan/Desktop/Test.xlsx"));
         System.out.println("oto jest: "+ workbook.getNumberOfSheets()+" stron");
 
@@ -30,6 +30,7 @@ public class Excel {
             }
             workbook.close();
         }
+        return null;
     }
 
 }
