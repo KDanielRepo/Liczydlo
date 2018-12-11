@@ -3,7 +3,6 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
@@ -15,6 +14,8 @@ public class Ui {
     private JButton sell;
     private JButton stats;
     private JButton back;
+    private JTextField quantity;
+    private JTextField price;
     private JLabel wynik;
     public Ui(){
         ramka = new JFrame("tutaj idzie tytul");
@@ -114,6 +115,10 @@ public class Ui {
                 try {
                     showStats();
                     Excel excel = new Excel();
+                    quantity = new JTextField();
+                    price = new JTextField();
+                    ramka.add(quantity);
+                    ramka.add(price);
                     wynik = new JLabel("test");
                     ramka.add(wynik);
                     wynik.setText(excel.test());
